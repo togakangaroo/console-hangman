@@ -1,0 +1,1 @@
+A console.log powered game of hangman akin to [this game](https://rawgit.com/secretGeek/console-adventure/master/console.html)
