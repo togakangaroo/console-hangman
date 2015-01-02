@@ -6,8 +6,28 @@
     <body>
         Open up the console to see the game!
         <script>
+        (function() {
+            var phrase, phraseLetters, currentDisplay, currentDisplayLetters
+                ;
             console.log("Welcome to our hangman game!");
-            var phrase = "Learn to program";
+            phrase = "Learn to program";
+            
+            /*
+            for each letter 
+              if it is a space log " "
+              otherwise log "-"
+            */
+            phraseLetters = Array.prototype.slice.call(phrase);
+            currentDisplayLetters = phraseLetters.map(function(character) {
+                if(character === " ") {
+                    return " ";
+                }
+                return "-";
+            });
+            currentDisplay = currentDisplayLetters.join("");
+            console.log("currently:", currentDisplay);
+        
+        }).call();   
         </script>
     </body>
-</html>
+</html> 
