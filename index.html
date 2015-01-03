@@ -11,7 +11,7 @@
             /////////////////////////////////////////////////
             // Variable declaration
             /////////////////////////////////////////////////
-            var toArray, scope
+            var toArray, scope, contains
                 ;
             /////////////////////////////////////////////////
             // Variable initialzation
@@ -22,9 +22,9 @@
             scope = function(fn) {
                 fn();
             }
-            /////////////////////////////////////////////////
-            // Do Stuff
-            /////////////////////////////////////////////////
+            contains = function(array, value) {
+                return array.indexOf(value) != -1;
+            }
             
             /////////////////////////////////////////////////
             // Export variables
@@ -32,56 +32,70 @@
             window.utils = {
                 toArray: toArray,
                 scope: scope,
+                contains: contains,
             };
         }).call();
         </script>
         <script>
             window.utils.scope(function() {
-                /*
-                for each letter 
-                  if it is a space log " "
-                  otherwise log "-"
-                */
                 
                 /////////////////////////////////////////////////
                 // Variable declaration
                 /////////////////////////////////////////////////
-                var phrase, phraseLetters, currentDisplay, currentDisplayLetters,
-                    guess
+                var phrase, phraseLetters, lettersGuessed,
+                    guess, displayCurrent
                     ;
                     
                 /////////////////////////////////////////////////
                 // Variable initialization
                 /////////////////////////////////////////////////
-                phrase = "Learn to program";
+                phrase = "learn to program";
                 phraseLetters = window.utils.toArray(phrase);
+                lettersGuessed = [];
                 
-                guess = function(theGuess) {
+                guess = function(input) {
                     var letter
                         ;
-                    letter = theGuess[0];
+                    /////////////////////////////////////////////////
+                    letter = input[0];
+                    /////////////////////////////////////////////////
+                    lettersGuessed.push(letter);
                 }
-                currentDisplayLetters = phraseLetters.map(function(character) {
-                    if(character === " ") {
-                        return " ";
-                    }
-                    return "-";
-                });
-                
-                currentDisplay = currentDisplayLetters.join("");
+                displayCurrent = function() {
+                    var currentDisplay, currentDisplayLetters
+                        ;
+                    /////////////////////////////////////////////////
+                    currentDisplayLetters = phraseLetters.map(function(character) {
+                        // for each character in the phrase.
+                        // if it is a space output space
+                        // if it has been guessed output the letter
+                        // otherwise output -
+                        if(character === " ") {                                 //if it is a space
+                            return " ";                                         //output a space
+                        }
+                        if(window.utils.contains(lettersGuessed, character)) {  //if it has been guessed
+                            return character;                                   //output the character
+                        }
+                        return "-";                                             //otherwise output -
+                    });
+                    currentDisplay = currentDisplayLetters.join("");
+                    
+                    /////////////////////////////////////////////////
+                    console.log("You have guessed", lettersGuessed);
+                    console.log("currently:", currentDisplay);
+                }
                 
                 /////////////////////////////////////////////////
                 // Do Stuff
                 /////////////////////////////////////////////////
                 console.log("Welcome to our hangman game!");
+                console.log("Commands are guess('a'), displayCurrent()");
                 
-                console.log("currently:", currentDisplay);
-            
-           
                 /////////////////////////////////////////////////
                 // Export variables
                 /////////////////////////////////////////////////
                 window.guess = guess;
+                window.displayCurrent = displayCurrent;
             });   
         </script>
     </body>
