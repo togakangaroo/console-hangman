@@ -6,28 +6,83 @@
     <body>
         Open up the console to see the game!
         <script>
-        (function() {
-            var phrase, phraseLetters, currentDisplay, currentDisplayLetters
-                ;
-            console.log("Welcome to our hangman game!");
-            phrase = "Learn to program";
+        (function(){
             
-            /*
-            for each letter 
-              if it is a space log " "
-              otherwise log "-"
-            */
-            phraseLetters = Array.prototype.slice.call(phrase);
-            currentDisplayLetters = phraseLetters.map(function(character) {
-                if(character === " ") {
-                    return " ";
+            /////////////////////////////////////////////////
+            // Variable declaration
+            /////////////////////////////////////////////////
+            var toArray, scope
+                ;
+            /////////////////////////////////////////////////
+            // Variable initialzation
+            /////////////////////////////////////////////////
+            toArray = function(obj) {
+                return Array.prototype.slice.call(obj)
+            };
+            scope = function(fn) {
+                fn();
+            }
+            /////////////////////////////////////////////////
+            // Do Stuff
+            /////////////////////////////////////////////////
+            
+            /////////////////////////////////////////////////
+            // Export variables
+            /////////////////////////////////////////////////
+            window.utils = {
+                toArray: toArray,
+                scope: scope,
+            };
+        }).call();
+        </script>
+        <script>
+            window.utils.scope(function() {
+                /*
+                for each letter 
+                  if it is a space log " "
+                  otherwise log "-"
+                */
+                
+                /////////////////////////////////////////////////
+                // Variable declaration
+                /////////////////////////////////////////////////
+                var phrase, phraseLetters, currentDisplay, currentDisplayLetters,
+                    guess
+                    ;
+                    
+                /////////////////////////////////////////////////
+                // Variable initialization
+                /////////////////////////////////////////////////
+                phrase = "Learn to program";
+                phraseLetters = window.utils.toArray(phrase);
+                
+                guess = function(theGuess) {
+                    var letter
+                        ;
+                    letter = theGuess[0];
                 }
-                return "-";
-            });
-            currentDisplay = currentDisplayLetters.join("");
-            console.log("currently:", currentDisplay);
-        
-        }).call();   
+                currentDisplayLetters = phraseLetters.map(function(character) {
+                    if(character === " ") {
+                        return " ";
+                    }
+                    return "-";
+                });
+                
+                currentDisplay = currentDisplayLetters.join("");
+                
+                /////////////////////////////////////////////////
+                // Do Stuff
+                /////////////////////////////////////////////////
+                console.log("Welcome to our hangman game!");
+                
+                console.log("currently:", currentDisplay);
+            
+           
+                /////////////////////////////////////////////////
+                // Export variables
+                /////////////////////////////////////////////////
+                window.guess = guess;
+            });   
         </script>
     </body>
 </html> 
