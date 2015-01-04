@@ -12,9 +12,6 @@
     toArray = function(obj) {
         return Array.prototype.slice.call(obj)
     };
-    scope = function(fn) {
-        fn();
-    }
     contains = function(array, value) {
         return array.indexOf(value) != -1
     }
@@ -67,9 +64,7 @@
     /////////////////////////////////////////////////
     window.hangman = {
         forEachLetter: forEachLetter,
-        scope: scope,
         contains: contains,
-        cornifyOnce: cornifyOnce,
         cornifyTimes: cornifyTimes,
     };
 }).call();

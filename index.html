@@ -7,7 +7,7 @@
         Open up the console to see the game!
         <script src="hangman-utils.js"></script>
         <script>
-            hangman.scope(function() {
+            (function() {
                 
                 /////////////////////////////////////////////////
                 // Variable declaration
@@ -19,7 +19,7 @@
                 /////////////////////////////////////////////////
                 // Variable initialization
                 /////////////////////////////////////////////////
-                phrase = "hi";
+                phrase = "lean to program";
                 lettersGuessed = [];
                 
                 guess = function(input) {
@@ -71,7 +71,7 @@
                 /////////////////////////////////////////////////
                 window.guess = guess;
                 window.displayCurrent = displayCurrent;
-            });   
+            })();   
         </script>
     </body>
 </html> 
