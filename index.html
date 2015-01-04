@@ -19,7 +19,7 @@
                 /////////////////////////////////////////////////
                 // Variable initialization
                 /////////////////////////////////////////////////
-                phrase = "learn to program";
+                phrase = "hi";
                 lettersGuessed = [];
                 
                 guess = function(input) {
@@ -29,11 +29,13 @@
                     letter = input[0];
                     /////////////////////////////////////////////////
                     lettersGuessed.push(letter);
-                }
+                    displayCurrent();
+                };
                 displayCurrent = function() {
-                    var currentDisplay
+                    var currentDisplay, remainingLetterCount
                         ;
                     /////////////////////////////////////////////////
+                    remainingLetterCount = 0;
                     currentDisplay = hangman.forEachLetter(phrase, function(character) {
                         // for each character in the phrase.
                         // if it is a space output space
@@ -45,13 +47,18 @@
                         if(hangman.contains(lettersGuessed, character)) {      //if it has been guessed
                             return character;                                  //output the character
                         }
+                        remainingLetterCount = remainingLetterCount + 1;
                         return "-";                                            //otherwise output -
                     });
                     
                     /////////////////////////////////////////////////
                     console.log("You have guessed", lettersGuessed);
                     console.log("currently:", currentDisplay);
-                }
+                    if(remainingLetterCount === 0) {
+                        console.log("You win!");
+                        hangman.cornifyTimes(4);
+                    }
+                };
                 
                 /////////////////////////////////////////////////
                 // Do Stuff
