@@ -22,12 +22,7 @@
                 phrase = "learn to program";
                 lettersGuessed = [];
                 
-                guess = function(input) {
-                    var letter
-                        ;
-                    /////////////////////////////////////////////////
-                    letter = input[0];
-                    /////////////////////////////////////////////////
+                guess = function(letter) {
                     lettersGuessed.push(letter);
                     displayCurrent();
                 };
