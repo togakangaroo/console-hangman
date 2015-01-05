@@ -19,7 +19,7 @@
                 /////////////////////////////////////////////////
                 // Variable initialization
                 /////////////////////////////////////////////////
-                phrase = "lean to program";
+                phrase = "learn to program";
                 lettersGuessed = [];
                 
                 guess = function(input) {
@@ -41,14 +41,14 @@
                         // if it is a space output space
                         // if it has been guessed output the letter
                         // otherwise output -
-                        if(character === " ") {                                //if it is a space
-                            return " ";                                        //output a space
+                        if(character === " ") {                                    //if it is a space
+                            return " ";                                            //output a space
+                        } else if(hangman.contains(lettersGuessed, character)) {   //if it has been guessed
+                            return character;                                      //output the character
+                        } else {
+                            remainingLetterCount = remainingLetterCount + 1;
+                            return "-";                                            //otherwise output -
                         }
-                        if(hangman.contains(lettersGuessed, character)) {      //if it has been guessed
-                            return character;                                  //output the character
-                        }
-                        remainingLetterCount = remainingLetterCount + 1;
-                        return "-";                                            //otherwise output -
                     });
                     
                     /////////////////////////////////////////////////
